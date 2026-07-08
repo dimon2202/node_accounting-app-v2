@@ -1,5 +1,9 @@
 let expenseIdCounter = 1;
-const expenses = [];
+let expenses = [];
+
+const setInitExpanses = () => {
+  expenses = [];
+};
 
 const getAll = () => {
   return expenses;
@@ -45,4 +49,5 @@ module.exports = {
   getById,
   update,
   deleteById,
+  setInitExpanses,
 };

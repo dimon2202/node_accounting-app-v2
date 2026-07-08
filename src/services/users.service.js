@@ -1,5 +1,9 @@
 let userIdCounter = 1;
-const users = [];
+let users = [];
+
+const setInitUsers = () => {
+  users = [];
+};
 
 const getAll = () => {
   return users;
@@ -45,4 +49,5 @@ module.exports = {
   getById,
   deleteById,
   update,
+  setInitUsers,
 };
