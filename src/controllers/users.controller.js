@@ -10,7 +10,7 @@ const create = async (req, res) => {
   const name = req.body.name;
 
   if (!name) {
-    return res.sendStatus(400);
+    return res.status(400).json({ error: 'Name is required' });
   }
 
   const user = await usersService.create(name);
@@ -22,13 +22,13 @@ const getById = async (req, res) => {
   const userId = Number(req.params.id);
 
   if (!userId) {
-    res.sendStatus(400);
+    return res.status(400).json({ error: 'UserId is required' });
   }
 
   const user = await usersService.getById(userId);
 
   if (!user) {
-    return res.sendStatus(404);
+    return res.status(404).json({ error: 'User is required' });
   }
 
   return res.status(200).json(user);
@@ -38,7 +38,7 @@ const deleteOne = async (req, res) => {
   const user = await usersService.getById(+req.params.id);
 
   if (!user) {
-    return res.sendStatus(404);
+    return res.status(404).json({ error: 'User is required' });
   }
 
   await usersService.deleteById(user.id);
@@ -51,7 +51,7 @@ const update = async (req, res) => {
   const user = await usersService.getById(+req.params.id);
 
   if (!user) {
-    return res.sendStatus(404);
+    return res.status(404).json({ error: 'User is required' });
   }
 
   const updatedUser = await usersService.update(user.id, name);

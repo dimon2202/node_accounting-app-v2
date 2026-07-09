@@ -13,7 +13,7 @@ const create = async (req, res) => {
   const existingUser = await usersService.getById(userId);
 
   if (!userId || !existingUser) {
-    return res.sendStatus(400);
+    return res.status(400).json({ error: 'User and existing is required' });
   }
 
   const expense = await expensesService.create(
@@ -32,7 +32,7 @@ const getById = async (req, res) => {
   const expense = await expensesService.getById(+req.params.id);
 
   if (!expense) {
-    return res.sendStatus(404);
+    return res.status(404).json({ error: 'Expepse is required' });
   }
 
   res.status(200).json(expense);
@@ -44,7 +44,7 @@ const update = async (req, res) => {
   const { spentAt, title, amount, category, note } = req.body;
 
   if (!expense) {
-    return res.sendStatus(404);
+    return res.status(404).json({ error: 'Expepse is required' });
   }
 
   const updatedExpense = await expensesService.update({
@@ -63,7 +63,7 @@ const deleteById = async (req, res) => {
   const expepse = await expensesService.getById(+req.params.id);
 
   if (!expepse) {
-    return res.sendStatus(404);
+    return res.status(404).json({ error: 'Expepse is required' });
   }
 
   await expensesService.deleteById(expepse.id);
