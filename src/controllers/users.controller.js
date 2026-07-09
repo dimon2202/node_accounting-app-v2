@@ -48,6 +48,11 @@ const deleteOne = async (req, res) => {
 
 const update = async (req, res) => {
   const name = req.body.name;
+
+  if (!name) {
+    return res.status(400).json({ error: 'Name is required' });
+  }
+
   const user = await usersService.getById(+req.params.id);
 
   if (!user) {
