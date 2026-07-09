@@ -22,13 +22,13 @@ const getById = async (req, res) => {
   const userId = Number(req.params.id);
 
   if (!userId) {
-    return res.status(400);
+    res.sendStatus(400);
   }
 
   const user = await usersService.getById(userId);
 
   if (!user) {
-    return res.status(404);
+    return res.sendStatus(404);
   }
 
   return res.status(200).json(user);

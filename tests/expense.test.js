@@ -104,7 +104,7 @@ describe('Expense', () => {
       ]);
     });
 
-    it.only('should return all expenses for a user', async () => {
+    it('should return all expenses for a user', async () => {
       const {
         body: { id: userId },
       } = await api.post('/users').send({
